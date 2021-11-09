@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  remit-usermanagement-rest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: remit-usermanagement-rest
+    container_name: remit-usermanagement-rest
+    ports:
+      - '8202:8202'
+    volumes:
+      - ./logs:/logs
+    restart: unless-stopped
+    network_mode: host

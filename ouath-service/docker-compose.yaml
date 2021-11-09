@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  remit-oauth-rest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: remit-oauth-rest
+    container_name: remit-oauth-rest
+    ports:
+      - '8201:8201'
+    restart: unless-stopped
+    network_mode: host

@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  file-storage-service:
+    build:
+      context: ""
+      dockerfile: Dockerfile
+    image: file-storage-service
+    container_name: file-storage-service
+    ports:
+      - '8101:8101'
+    restart: unless-stopped
+    volumes:
+    - ./upload-dir:/upload-dir
+    network_mode: host

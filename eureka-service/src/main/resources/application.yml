@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: mynhaka-eureka-server
+  profiles:
+    active: dev

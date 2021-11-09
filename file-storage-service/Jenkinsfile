@@ -1,0 +1,62 @@
+node{
+    stage('Scm checkout'){
+        def gitexec = tool name: 'Default', type: 'git'
+        git branch: 'master', credentialsId: 'cap10-github', url: 'https://github.com/invenico-zw/file-storage-service.git'
+    }
+    stage('Build'){
+       def mvnHome = "/usr/share/maven"
+       def mvnCMD = "${mvnHome}/bin/mvn"
+       sh "${mvnCMD} -B -DskipTests clean package"
+    }
+    stage('Build docker image'){
+    sh 'docker-compose build --no-cache --force-rm'
+    }
+
+    stage('Github Packages Login'){
+    sh "cat /var/lib/jenkins/INVENICO_TOKEN.txt | docker login docker.pkg.github.com -u cap10 --password-stdin"
+    }
+
+    stage('tagging image'){
+    sh 'docker tag file-storage-service docker.pkg.github.com/invenico-zw/file-storage-service/file-storage-service:latest'
+    }
+    stage('Push new image'){
+
+        sh 'docker push docker.pkg.github.com/invenico-zw/file-storage-service/file-storage-service:latest'
+    }
+
+      stage('Pull new image-Stage-1'){
+            def dockerRun ='docker pull docker.pkg.github.com/invenico-zw/file-storage-service/file-storage-service:latest'
+            sshagent(['rbz-admin']) {
+                sh "ssh -o StrictHostKeyChecking=no venon@95.111.225.119 ${dockerRun}"
+            }
+        }
+
+
+   /*  stage('Pull new image-Stage-2'){
+        def dockerLogin ='cat /home/andries/GH_TOKEN.txt | docker login docker.pkg.github.com -u cap10 --password-stdin'
+        sshagent(['rbz-admin']) {
+            sh "ssh -o StrictHostKeyChecking=no andries@167.86.89.8 ${dockerLogin}"
+        }
+    }
+     stage('Stop currently running container'){
+        def dockerStop ='docker stop remittances-mysql-api'
+        sshagent(['rbz-admin']) {
+            sh "ssh -o StrictHostKeyChecking=no andries@167.86.89.8 ${dockerStop}"
+        }
+    }
+
+    stage('Remove currently running container'){
+          def dockerRm ='docker rm remittances-mysql-api'
+        sshagent(['rbz-admin']) {
+            sh "ssh -o StrictHostKeyChecking=no andries@167.86.89.8 ${dockerRm}"
+        }
+
+    }
+
+     stage('Run newly created image'){
+        def dockerRm ='docker run --network host -d --name remittances-mysql-api docker.pkg.github.com/invenico-zw/rbz-remittances/remittances-mysql:latest'
+        sshagent(['rbz-admin']) {
+            sh "ssh -o StrictHostKeyChecking=no andries@167.86.89.8 ${dockerRm}"
+        }
+    }  */
+}

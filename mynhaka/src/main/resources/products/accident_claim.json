@@ -1,0 +1,34 @@
+{
+  "policyNumber": "965644P01",
+  "claimantName": "Venon Mapfunde",
+  "gender": "MALE",
+  "dob": "2020-07-21",
+  "relationship": "Child",
+  "dateofInjury": "2020-07-21",
+  "accidentLocation": "ON_JOB",
+  "similarCondition": true,
+  "hospitalAdmission": true,
+  "hospitalisationDate": "2020-07-21",
+  "admission": "2020-07-21",
+  "released": "2020-07-21",
+  "descriptionAccident": "Accident happened",
+  "primaryPhysicianName": "Dr Mapfunde",
+  "primaryPhysicianAddress": {
+    "street": "100 Hararare",
+    "suburb": "Highlads",
+    "city": "Harare"
+  },
+  "primaryPhysicianEmail": "physcian@email.com",
+  "primaryPhysicianTelephone": "0775091262",
+  "primaryPhysicianFax": "0775091262",
+  "referringPhysicianName": "Dr Madzingo",
+  "referringPhysicianAddress": {
+    "street": "100 Hararare",
+    "suburb": "Highlads",
+    "city": "Harare"
+  },
+  "referringPhysicianEmail": "primary@email.co.zw",
+  "referringPhysicianTelephone": "0776992174",
+  "referringPhysicianFax": "0776992174",
+  "accidentClaimReason": "ACCIDENTAL_DEATH"
+}

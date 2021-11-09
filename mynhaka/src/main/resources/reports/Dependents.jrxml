@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Dependents" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d2ec2fba-81bc-42b5-964e-ffe0f7d3079a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MyNhaka.xml"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT mynhakamylife.beneficiary.name,
+	mynhakamylife.beneficiary.id_number,
+	mynhakamylife.beneficiary.gender,
+	mynhakamylife.beneficiary.date_of_birth,
+	mynhakamylife.beneficiary.surname,
+	mynhakamylife.beneficiary.policy_number
+FROM mynhakamylife.beneficiary
+where mynhakamylife.beneficiary <> 'BENEFICIARY']]>
+	</queryString>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="beneficiary"/>
+	</field>
+	<field name="id_number" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="id_number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="beneficiary"/>
+	</field>
+	<field name="gender" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="gender"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="beneficiary"/>
+	</field>
+	<field name="date_of_birth" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="date_of_birth"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="beneficiary"/>
+	</field>
+	<field name="surname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="surname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="beneficiary"/>
+	</field>
+	<field name="policy_number" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="policy_number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="beneficiary"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="60" width="100" height="30" uuid="53f9a631-5507-482a-ba46-89929188b5ef"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[2. Dependents]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="30" uuid="bb8f72c3-5003-4306-a62e-f78c9102e516">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2c10c4a3-b7f7-4f78-bd2d-036a080a3c1b"/>
+				</reportElement>
+				<text><![CDATA[name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="111" height="30" uuid="274ea987-e32b-4ef1-ab66-ddd7edb0f7b6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9294106d-27e0-477c-9397-c9d6050a586a"/>
+				</reportElement>
+				<text><![CDATA[id_number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="111" height="30" uuid="9b3b691e-c876-46f4-abb6-9a1d4120f007">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="352f0fa7-4ddc-4dd7-a010-34e9030f0b04"/>
+				</reportElement>
+				<text><![CDATA[gender]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="0" width="111" height="30" uuid="b521cd7f-d0f9-4d31-84bc-d2c9e4a4bdaf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8ffd964d-7ba5-4f6a-a830-d9bda06e97cc"/>
+				</reportElement>
+				<text><![CDATA[date_of_birth]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="0" width="111" height="30" uuid="180d2895-a9fa-4192-9bb1-78d1e9e1532f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d36463b7-f038-4726-bb2d-de14f0511bef"/>
+				</reportElement>
+				<text><![CDATA[surname]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="111" height="30" uuid="f0af840d-1359-4e18-91a6-7f6f3f2973ae">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2c10c4a3-b7f7-4f78-bd2d-036a080a3c1b"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="111" height="30" uuid="8af81ae9-2cc3-4446-be8b-00827b539303">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9294106d-27e0-477c-9397-c9d6050a586a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{id_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="111" height="30" uuid="b3ee4661-f56e-4e7f-a4d6-d6a8b3d2bc81">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="352f0fa7-4ddc-4dd7-a010-34e9030f0b04"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{gender}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="0" width="111" height="30" uuid="e0d3226d-0739-438f-b340-208fc4b2e384">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8ffd964d-7ba5-4f6a-a830-d9bda06e97cc"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{date_of_birth}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="111" height="30" uuid="7df66f37-d6c0-48f8-9e97-083649067501">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d36463b7-f038-4726-bb2d-de14f0511bef"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{surname}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

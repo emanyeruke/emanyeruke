@@ -1,0 +1,103 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      enabled: false
+      max-file-size: 10MB
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mariadb://localhost:3306/mynhakamylife_live?createDatabaseIfNotExist=true&useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&failOverReadOnly=false&allowMultiQueries=true&serverTimezone=Africa/Harare
+    username: 'remote'
+    password: 'Nh@kaLIF3'
+    driver-class-name: org.mariadb.jdbc.Driver
+    hikari:
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        useLocalSessionState: true
+        rewriteBatchedStatements: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: false
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDB103Dialect
+    database: MYSQL
+    hibernate:
+      ddl-auto: update
+
+  properties:
+      hibernate.format_sql: true
+      hibernate.use_sql_comments: true
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: true
+      hibernate.jdbc.batch_size: 500
+      hibernate.order_inserts: true
+      hibernate.order_updates: true
+      hibernate.query.fail_on_pagination_over_collection_fetch: true
+      hibernate.query.in_clause_parameter_padding: true
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: lazy
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+server:
+  port: 8000
+
+logging.level.org.hibernate.SQL: DEBUG
+logging.level.org.hibernate.type.descriptor.sql: TRACE
+
+logging.logstash:
+  enabled: true
+  url: logstash.jugaad.co.zw:80
+
+upload-dir: ./uploads
+templates-dir: ./templates
+purge.cron.expression: 0 0 5 * * ?
+maturity.cron.expression: 0 0 5 * * ?
+lapsed.cron.expression: 0 0 5 * * ?
+individual.cron.expression: 0 46 12 * * ?
+employer.cron.expression: 0 18 17 * * ?
+
+client.delight.email: takaiteyi@gmail.com
+claim.admin.email: takaiteyi@gmail.com
+premium.admin.email: takaiteyi@gmail.com
+policy.admin.email: takaiteyi@gmail.com
+ceo.email: takaiteyi@gmail.com
+finance.email: takaiteyi@gmail.com
+
+accident:
+  for:
+    every:
+      thousand: 0.6
+
+funeral:
+  for:
+    every:
+      thousand: 0.6
+
+comprehensive:
+  for:
+    every:
+      thousand: 0.6
+
+savings:
+  for:
+    every:
+      thousand: 0.6
+
+cash:
+  import:
+    format: '{0},{1},{2},{3}'

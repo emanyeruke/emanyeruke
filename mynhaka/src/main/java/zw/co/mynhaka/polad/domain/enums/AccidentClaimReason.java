@@ -1,0 +1,8 @@
+package zw.co.mynhaka.polad.domain.enums;
+
+public enum AccidentClaimReason {
+    ACCIDENTAL_DEATH,
+    TOTAL_AND_PERMANENT_ACCIDENTAL_DISABILITY,
+    ACCIDENTAL_PARTIAL_DISABILITY,
+    TOTAL_AND_TEMPORARY_ACCIDENTAL_DISABILITY
+}

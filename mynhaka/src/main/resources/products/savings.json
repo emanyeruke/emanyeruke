@@ -1,0 +1,97 @@
+{
+  "name": "Savings Policy",
+  "adminFee": 2.50,
+  "savingsProductCreateDto": [
+    {
+      "savingsId": 0,
+      "name": "Savings-1",
+      "monthlyInvestmentPremium": 10,
+      "premiumWaiverRate": 0.64,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "savingsId": 0,
+      "name": "Savings-1",
+      "monthlyInvestmentPremium": 15,
+      "premiumWaiverRate": 0.96,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "savingsId": 0,
+      "name": "Savings-1",
+      "monthlyInvestmentPremium": 20,
+      "premiumWaiverRate": 1.28,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "savingsId": 0,
+      "name": "Savings-1",
+      "monthlyInvestmentPremium": 25,
+      "premiumWaiverRate": 1.60,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "savingsId": 0,
+      "name": "Savings-1",
+      "monthlyInvestmentPremium": 30,
+      "premiumWaiverRate": 1.92,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "savingsId": 0,
+      "name": "Savings-1",
+      "monthlyInvestmentPremium": 35,
+      "premiumWaiverRate": 2.24,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "savingsId": 0,
+      "name": "Savings-1",
+      "monthlyInvestmentPremium": 40,
+      "premiumWaiverRate": 2.56,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "savingsId": 0,
+      "name": "Savings-1",
+      "monthlyInvestmentPremium": 50,
+      "premiumWaiverRate": 3.2,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "savingsId": 0,
+      "name": "Savings-1",
+      "monthlyInvestmentPremium": 60,
+      "premiumWaiverRate": 3.84,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "savingsId": 0,
+      "name": "Savings-1",
+      "monthlyInvestmentPremium": 70,
+      "premiumWaiverRate": 4.84,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "savingsId": 0,
+      "name": "Savings-1",
+      "monthlyInvestmentPremium": 80,
+      "premiumWaiverRate": 5.12,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "savingsId": 0,
+      "name": "Savings-1",
+      "monthlyInvestmentPremium": 90,
+      "premiumWaiverRate": 5.76,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "savingsId": 0,
+      "name": "Savings-1",
+      "monthlyInvestmentPremium": 100,
+      "premiumWaiverRate": 6.40,
+      "personType": "PRINCIPAL"
+    }
+  ]
+}

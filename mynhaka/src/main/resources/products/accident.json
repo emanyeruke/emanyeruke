@@ -1,0 +1,76 @@
+{
+  "name": "Accident Policy",
+  "adminFee": 0,
+  "accidentProductCreateDto": [
+    {
+      "accidentId": 0,
+      "name": "Accident-1000",
+      "sumAssured": 1000,
+      "premium": 0.60,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "accidentId": 0,
+      "name": "Accident-1000",
+      "sumAssured": 1000,
+      "premium": 0.60,
+      "personType": "SPOUSE"
+    },
+    {
+      "accidentId": 0,
+      "name": "Accident-2000",
+      "sumAssured": 2000,
+      "premium": 1.20,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "accidentId": 0,
+      "name": "Accident-2000",
+      "sumAssured": 2000,
+      "premium": 1.20,
+      "personType": "SPOUSE"
+    },
+    {
+      "accidentId": 0,
+      "name": "Accident-3000",
+      "sumAssured": 3000,
+      "premium": 1.80,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "accidentId": 0,
+      "name": "Accident-3000",
+      "sumAssured": 3000,
+      "premium": 1.80,
+      "personType": "SPOUSE"
+    },
+    {
+      "accidentId": 0,
+      "name": "Accident-4000",
+      "sumAssured": 4000,
+      "premium": 2.40,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "accidentId": 0,
+      "name": "Accident-4000",
+      "sumAssured": 4000,
+      "premium": 2.40,
+      "personType": "SPOUSE"
+    },
+    {
+      "accidentId": 0,
+      "name": "Accident-5000",
+      "sumAssured": 5000,
+      "premium": 3.00,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "accidentId": 0,
+      "name": "Accident-5000",
+      "sumAssured": 5000,
+      "premium": 3.00,
+      "personType": "SPOUSE"
+    }
+  ]
+}

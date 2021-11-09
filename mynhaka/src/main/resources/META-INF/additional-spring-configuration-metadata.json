@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "accident.for.every.thousand",
+      "type": "java.lang.String",
+      "description": "Description for accident.for.every.thousand."
+    }
+  ]
+}

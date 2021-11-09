@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tax" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df013db5-f76e-44d3-b0df-bcbc46d93160">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MyJDBCDataAdaptor"/>
+	<style name="Title"  fontSize="50" isBold="true"/>
+	<style name="SubTitle" forecolor="#736343"  fontSize="18"/>
+	<style name="Column header" forecolor="#666666"  fontSize="12" isBold="true"/>
+	<style name="Detail"  fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="FILTER_START_DATE" class="java.sql.Timestamp"/>
+	<parameter name="FILTER_END_DATE" class="java.sql.Timestamp"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT akuwallet.imt_tax_suspense_account.id as id,
+	akuwallet.imt_tax_suspense_account.currency_code as currency,
+	akuwallet.imt_tax_suspense_account.entry_type as entryType,
+	akuwallet.imt_tax_suspense_account.original_transaction_id as originalTransactionId,
+	akuwallet.imt_tax_suspense_account.tax as tax,
+	akuwallet.imt_tax_suspense_account.transaction_amount as amount,
+	akuwallet.imt_tax_suspense_account.transaction_type as transactionType,
+	akuwallet.imt_tax_suspense_account.transaction_date as transactionDate
+FROM akuwallet.imt_tax_suspense_account
+where akuwallet.imt_tax_suspense_account.transaction_date between
+$P{FILTER_START_DATE}
+and
+$P{FILTER_END_DATE}
+Order by transactionDate desc
+]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="imt_tax_suspense_account"/>
+	</field>
+	<field name="originalTransactionId" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="originalTransactionId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="imt_tax_suspense_account"/>
+	</field>
+	<field name="transactionDate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="transactionDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="imt_tax_suspense_account"/>
+	</field>
+	<field name="currency" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="currency"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="imt_tax_suspense_account"/>
+	</field>
+	<field name="transactionType" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="transactionType"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="imt_tax_suspense_account"/>
+	</field>
+	<field name="entryType" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="entryType"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="imt_tax_suspense_account"/>
+	</field>
+	<field name="tax" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="tax"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="imt_tax_suspense_account"/>
+	</field>
+	<field name="amount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="amount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="imt_tax_suspense_account"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="200" y="0" width="470" height="62" uuid="bc1ce1da-8232-46ea-be55-cec4abb986dd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[IMT Tax Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="e9d2002a-c8ee-4649-a258-640dad29110c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="100" height="15" forecolor="#000000" uuid="0901a038-d784-44d1-ad53-2f485146f138">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="71187b74-4a1f-4364-8113-ecaa0f638b10"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="100" y="0" width="100" height="15" forecolor="#000000" uuid="ff850f2a-24c7-4940-849f-af40d8ce6967">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5fe0b03e-b7ec-419a-8eac-a6a07eea7268"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Og Trans Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="200" y="0" width="100" height="15" forecolor="#000000" uuid="4107abe0-03c0-4da1-81f1-39ac78e4b200">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="42e8027b-c1ad-49e7-a78a-b7d64845a23f"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Transaction Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="300" y="0" width="100" height="15" forecolor="#000000" uuid="00c9e775-0107-421a-b169-94d09f45cf35">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a34e84d6-6464-4c1c-a727-3129c14ae126"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Currency]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="400" y="0" width="100" height="15" forecolor="#000000" uuid="969e4fb0-d728-440f-9091-32729d90ce38">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="607a189f-4252-4cb5-8f71-949b7d55f117"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Transaction Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="500" y="0" width="100" height="15" forecolor="#000000" uuid="a68b4f7d-3831-405c-8966-35111465060e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="43b4728d-9c2d-4439-b747-b15920541663"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Cr/Dr]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="600" y="0" width="100" height="15" forecolor="#000000" uuid="513594c9-1f0a-4a7b-98c3-1557c0d0cb65">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dac8cb2d-4e64-42c8-8649-b9889861aa07"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Tax]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="700" y="0" width="100" height="15" forecolor="#000000" uuid="24d66129-fcba-402c-853e-f37c46780241">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dd248f21-b1c8-42c2-8eb8-84910936c408"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="fa7cec56-4ec1-48e6-a26e-7266a995d174"/>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" x="0" y="0" width="100" height="15" uuid="eea45faa-e274-4bd8-9051-bc7aa4c0f126">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="71187b74-4a1f-4364-8113-ecaa0f638b10"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" x="100" y="0" width="100" height="15" uuid="0395c343-9644-490b-b5cd-b8f28fb22091">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5fe0b03e-b7ec-419a-8eac-a6a07eea7268"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{originalTransactionId}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" x="200" y="0" width="100" height="15" uuid="f8a57132-2412-4634-8967-36034b04cc98">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="42e8027b-c1ad-49e7-a78a-b7d64845a23f"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{transactionDate}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" x="300" y="0" width="100" height="15" uuid="09bdb5e9-9e01-4824-9b98-05c0417b6a3e">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a34e84d6-6464-4c1c-a727-3129c14ae126"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{currency}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" x="400" y="0" width="100" height="15" uuid="ade3bae8-7f22-436b-84a4-84791efbb85e">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="607a189f-4252-4cb5-8f71-949b7d55f117"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{transactionType}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" x="500" y="0" width="100" height="15" uuid="ece21054-4c8d-4205-9025-856e2dcb2f07">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="43b4728d-9c2d-4439-b747-b15920541663"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{entryType}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" x="600" y="0" width="100" height="15" uuid="11496062-f4e7-4832-94b6-cd9a9190a048">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dac8cb2d-4e64-42c8-8649-b9889861aa07"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{tax}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" x="700" y="0" width="100" height="15" uuid="4d2e6948-4f40-4818-9205-53ec34cdf0e7">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dd248f21-b1c8-42c2-8eb8-84910936c408"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="fa5e88d5-a011-4e32-8f12-ce923f903111"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="5d8169bd-4a75-48c8-8a68-6d3ad5ba9402"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="e5e27efa-b599-499b-9ca3-848cb511cb7b"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="18cfe1ca-f7d6-48b0-9827-28578b42a5e0"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="fbce24bb-3cb1-44a3-8eec-8c067ddbe5b5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

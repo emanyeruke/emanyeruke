@@ -1,0 +1,68 @@
+{
+  "policyNumber": "485027P01",
+  "idNumber": "592001300y75",
+  "nameOfInsured": "Venon Mapfunde",
+  "telephoneNumber": "0775091262",
+  "email": "venon@email.com",
+  "claimantFirstName": "Venon",
+  "claimantLastName": "Mapfunde",
+  "claimantIdNumber": "5920017485112",
+  "claimantTelephoneNumber": "0775091262",
+  "claimantEmail": "email@email.com",
+  "claimantPostalAddress": {
+    "street": "100 Nelson Mandela",
+    "suburb": "Harare",
+    "city": "Harare"
+  },
+  "deceasedFirstName": "Dead",
+  "deceasedLastName": "Person",
+  "deceasedIdNumber": "892001300y75",
+  "deceasedRelationship": "Sonead CookH",
+  "deceasedEmployer": "Company X",
+  "dateofDeath": "2020-07-21",
+  "placeOfDeath": "Kutama Collge",
+  "addressOfDeath": {
+   "street": "100 Nelson Mandela",
+    "suburb": "Harare",
+    "city": "Harare"
+  },
+  "contactPlaceOfDeath": "Harare",
+  "causeOfDeath": "Heart Attack",
+  "venueOfDeath": "Venue Ibiza",
+  "placeOfBurial": "Ibis Hotel",
+  "palourName": "Nyaradzo",
+  "palourAddress": {
+    "street": "100 Nelson Mandela",
+    "suburb": "Harare",
+    "city": "Harare"
+  },
+  "palourContactNumber": "0775091262",
+  "policeStation": "Mabelreign",
+  "policeStationAddress": {
+    "street": "100 Nelson Mandela",
+    "suburb": "Harare",
+    "city": "Harare"
+  },
+  "policeCaseNumber": "1264653R76",
+  "nameInvestigatingOfficer": "George Investigation",
+  "contactInvestigatingOfficer": "0778091262",
+  "medicalAttendant": "Medical Person",
+  "addressMedicalAttendant": {
+   "street": "100 Nelson Mandela",
+    "suburb": "Harare",
+    "city": "Harare"
+  },
+  "contactNumberMedicalAttendant": "7894561232",
+  "bankPayOutMethod": {
+    "bank": "CABS",
+    "branch": "Avondale",
+    "accountNumber": "0775091262",
+    "accountName": "Cabs Account Name"
+  },
+  "mobilePayOutMethod": {
+    "walletName": "1234567",
+    "mobileNumber": "0775091262",
+    "accountNumber": "12546355"
+  },
+  "cashPayOutMethod": true
+}

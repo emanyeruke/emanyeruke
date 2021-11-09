@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>zw.co.mynhaka</groupId>
+    <artifactId>myPolad</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+    <packaging>pom</packaging>
+    <modules>
+        <module>mynhaka</module>
+        <module>zuul-gateway</module>
+        <!--  <module>file-storage-service</module>
+         &lt;!&ndash; <module>policy-service</module>
+          <module>policy-holder-service</module>&ndash;&gt;
+          &lt;!&ndash;<module>eureka-service</module>
+          <module>gateway-service</module>&ndash;&gt;
+         &lt;!&ndash; <module>payment-service</module>&ndash;&gt;
+         &lt;!&ndash; <module>commons</module>&ndash;&gt;
+          <module>ouath-service</module>
+          <module>user-service</module>
+          <module>gateway-service</module>
+          <module>audit-trail-service</module>-->
+    </modules>
+</project>

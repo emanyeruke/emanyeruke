@@ -1,0 +1,166 @@
+{
+  "name": "Comprehensive",
+  "adminFee": 0,
+  "comprehensiveProductCreateDto": [
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-5000",
+      "sumAssured": 5000,
+      "premium": 15,
+      "term": "TEN_YEAR",
+      "personType": "PRINCIPAL"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-5000",
+      "sumAssured": 5000,
+      "premium": 15,
+      "term": "TEN_YEAR",
+      "personType": "SPOUSE"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-5000",
+      "sumAssured": 5000,
+      "premium": 11.50,
+      "term": "TEN_YEAR",
+      "personType": "CHILD"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-3000",
+      "sumAssured": 3000,
+      "premium": 15,
+      "term": "TEN_YEAR",
+      "personType": "PARENT"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-3000",
+      "sumAssured": 3000,
+      "premium": 15,
+      "term": "TEN_YEAR",
+      "personType": "EXTENDED_FAMILY"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-10000",
+      "sumAssured": 10000,
+      "premium": 30,
+      "term": "TEN_YEAR",
+      "personType": "PRINCIPAL"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-10000",
+      "sumAssured": 10000,
+      "premium": 30,
+      "term": "TEN_YEAR",
+      "personType": "SPOUSE"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-10000",
+      "sumAssured": 10000,
+      "premium": 25,
+      "term": "TEN_YEAR",
+      "personType": "CHILD"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-10000",
+      "sumAssured": 6000,
+      "premium": 30,
+      "term": "TEN_YEAR",
+      "personType": "PARENT"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-10000",
+      "sumAssured": 6000,
+      "premium": 30,
+      "term": "TEN_YEAR",
+      "personType": "EXTENDED_FAMILY"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-15000",
+      "sumAssured": 15000,
+      "premium": 45,
+      "term": "TEN_YEAR",
+      "personType": "PRINCIPAL"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-15000",
+      "sumAssured": 15000,
+      "premium": 45,
+      "term": "TEN_YEAR",
+      "personType": "SPOUSE"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-15000",
+      "sumAssured": 15000,
+      "premium": 37.50,
+      "term": "TEN_YEAR",
+      "personType": "CHILD"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-9000",
+      "sumAssured": 9000,
+      "premium": 45,
+      "term": "TEN_YEAR",
+      "personType": "PARENT"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-9000",
+      "sumAssured": 9000,
+      "premium": 45,
+      "term": "TEN_YEAR",
+      "personType": "EXTENDED_FAMILY"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-20000",
+      "sumAssured": 20000,
+      "premium": 60,
+      "term": "TEN_YEAR",
+      "personType": "PRINCIPAL"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-20000",
+      "sumAssured": 20000,
+      "premium": 60,
+      "term": "TEN_YEAR",
+      "personType": "SPOUSE"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-20000",
+      "sumAssured": 20000,
+      "premium": 50,
+      "term": "TEN_YEAR",
+      "personType": "CHILD"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-12000",
+      "sumAssured": 12000,
+      "premium": 60,
+      "term": "TEN_YEAR",
+      "personType": "PARENT"
+    },
+    {
+      "comprehensiveId": 0,
+      "name": "Comprehensive-10year-12000",
+      "sumAssured": 12000,
+      "premium": 60,
+      "term": "TEN_YEAR",
+      "personType": "EXTENDED_FAMILY"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: policy-holder-service
+  profiles:
+    active: local

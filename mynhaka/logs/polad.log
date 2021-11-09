@@ -1,0 +1,1770 @@
+19:47:18.962 [main] INFO  z.c.m.polad.MynhakaApplicationTests - The following profiles are active: local 
+19:47:19.961 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in LAZY mode. 
+19:47:20.232 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 262ms. Found 41 JPA repository interfaces. 
+19:47:20.348 [main] WARN  o.s.b.actuate.endpoint.EndpointId - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format. 
+19:47:20.617 [main] INFO  o.s.c.context.scope.GenericScope - BeanFactory id=2189bde6-5c9f-3d44-8e91-eb08f512df91 
+19:47:20.966 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@3d3b272a' of type [org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) 
+19:47:20.984 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) 
+19:47:21.239 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor' 
+19:47:21.290 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler' 
+19:47:21.368 [task-1] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default] 
+19:47:21.450 [task-1] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.21.Final 
+19:47:21.618 [task-1] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final} 
+19:47:21.760 [task-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting... 
+19:47:21.832 [task-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed. 
+19:47:21.857 [task-1] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MariaDB103Dialect 
+19:47:21.979 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+19:47:22.174 [main] WARN  c.n.c.s.URLConfigurationSource - No URLs will be polled as dynamic configuration sources. 
+19:47:22.174 [main] INFO  c.n.c.s.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath. 
+19:47:22.209 [main] INFO  c.n.config.DynamicPropertyFactory - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@6c1a6db1 
+19:47:22.531 [task-1] INFO  org.hibernate.search.engine.Version - HSEARCH000034: Hibernate Search 5.11.7.Final 
+19:47:23.358 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table accident_product (
+       id bigint not null auto_increment,
+        clawback_period integer not null,
+        name varchar(255),
+        person_type varchar(255),
+        premium double precision not null,
+        sum_assured double precision not null,
+        accident_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.366 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table agent (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        channel varchar(255),
+        contact_number varchar(255),
+        email varchar(255),
+        name varchar(255),
+        position varchar(255),
+        surname varchar(255),
+        team varchar(255),
+        manager_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.374 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table allocation (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        amount decimal(19,2),
+        payment_id bigint,
+        policy_accident_id bigint,
+        policy_comprehensive_id bigint,
+        policy_funeral_id bigint,
+        policy_savings_id bigint,
+        transaction_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.380 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table beneficiary (
+       id bigint not null auto_increment,
+        date_of_birth date,
+        gender varchar(255),
+        id_number varchar(255),
+        name varchar(255) not null,
+        percentage_share bigint,
+        person_type varchar(255),
+        policy_number varchar(255),
+        relationship varchar(255),
+        surname varchar(255) not null,
+        policy_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.385 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table beneficiary_accident (
+       id bigint not null auto_increment,
+        date_of_birth date,
+        gender varchar(255),
+        id_number varchar(255),
+        name varchar(255) not null,
+        percentage_share bigint not null,
+        person_type varchar(255),
+        policy_number varchar(255),
+        relationship varchar(255),
+        surname varchar(255) not null,
+        accident_id bigint,
+        policy_accident_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.390 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table beneficiary_comprehensive (
+       id bigint not null auto_increment,
+        date_of_birth date,
+        gender varchar(255),
+        id_number varchar(255),
+        name varchar(255) not null,
+        percentage_share bigint not null,
+        person_type varchar(255),
+        policy_number varchar(255),
+        relationship varchar(255),
+        surname varchar(255) not null,
+        comprehensive_funeral_id bigint,
+        policy_comprehensive_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.396 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table beneficiary_funeral (
+       id bigint not null auto_increment,
+        date_of_birth date,
+        gender varchar(255),
+        id_number varchar(255),
+        name varchar(255) not null,
+        percentage_share bigint not null,
+        person_type varchar(255),
+        policy_number varchar(255),
+        relationship varchar(255),
+        surname varchar(255) not null,
+        funeral_id bigint,
+        policy_funeral_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.402 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table beneficiary_savings (
+       id bigint not null auto_increment,
+        date_of_birth date,
+        gender varchar(255),
+        id_number varchar(255),
+        name varchar(255) not null,
+        percentage_share bigint not null,
+        person_type varchar(255),
+        policy_number varchar(255),
+        relationship varchar(255),
+        surname varchar(255) not null,
+        policy_savings_id bigint,
+        savings_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.408 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table cancel_policy (
+       id bigint not null auto_increment,
+        cancel_policy_status integer,
+        effective_date date,
+        more_information varchar(255),
+        policy_number varchar(255),
+        reason integer,
+        submission_date date,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.413 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table claim_accident (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        accident_claim_reason varchar(255),
+        accident_location integer,
+        admission date,
+        amount decimal(19,2),
+        claim_status varchar(255),
+        claimant_name varchar(255),
+        claimant_type integer,
+        date_claim_paid datetime(6),
+        date_created datetime(6),
+        dateof_injury date,
+        description_accident varchar(255),
+        dob date,
+        gender integer,
+        hospital_admission bit,
+        hospitalisation_date date,
+        policy_number varchar(255),
+        primary_physician_address_city varchar(255),
+        primary_physician_address_street varchar(255),
+        primary_physician_address_suburb varchar(255),
+        primary_physician_email varchar(255),
+        primary_physician_fax varchar(255),
+        primary_physician_name varchar(255),
+        primary_physician_telephone varchar(255),
+        referring_physician_address_city varchar(255),
+        referring_physician_address_street varchar(255),
+        referring_physician_address_suburb varchar(255),
+        referring_physician_email varchar(255),
+        referring_physician_fax varchar(255),
+        referring_physician_name varchar(255),
+        referring_physician_telephone varchar(255),
+        relationship varchar(255),
+        released date,
+        similar_condition bit,
+        policy_accident_id bigint,
+        policy_holder_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.419 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table claim_comprehensive (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        address_of_death_city varchar(255),
+        address_of_death_street varchar(255),
+        address_of_death_suburb varchar(255),
+        administration_letter varchar(255),
+        amount decimal(19,2),
+        birth_certificate varchar(255),
+        burial_order varchar(255),
+        cause_of_death varchar(30),
+        certificate_medical_attendant varchar(255),
+        certification_authority varchar(255),
+        claim_status varchar(255),
+        claimant_certificate varchar(255),
+        claimant_email varchar(50),
+        claimant_first_name varchar(30),
+        claimant_id_number varchar(15),
+        claimant_last_name varchar(30),
+        claimant_postal_address_city varchar(255),
+        claimant_postal_address_street varchar(255),
+        claimant_postal_address_suburb varchar(255),
+        claimant_telephone_number varchar(15),
+        contact_place_of_death varchar(50),
+        date_claim_paid datetime(6),
+        date_of_death date,
+        death_certificate varchar(255),
+        deceased_employer varchar(30),
+        deceased_first_name varchar(30),
+        deceased_id_number varchar(15),
+        deceased_last_name varchar(30),
+        deceased_occupation varchar(30),
+        deceased_relationship varchar(15),
+        email varchar(50),
+        id_number varchar(15),
+        marriage_certificate varchar(255),
+        masters_release varchar(255),
+        medical_report_document varchar(255),
+        name_of_insured varchar(50),
+        nationalid varchar(255),
+        palour_address_city varchar(255),
+        palour_address_street varchar(255),
+        palour_address_suburb varchar(255),
+        palour_contact_number varchar(15),
+        palour_name varchar(50),
+        place_of_burial varchar(50),
+        place_of_death varchar(50),
+        police_report varchar(255),
+        policy_document varchar(255),
+        policy_number varchar(30),
+        telephone_number varchar(15),
+        venue_of_death varchar(50),
+        policy_comprehensive_id bigint,
+        policy_holder_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.425 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table claim_funeral (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        address_of_death_city varchar(255),
+        address_of_death_street varchar(255),
+        address_of_death_suburb varchar(255),
+        administration_letter varchar(255),
+        amount decimal(19,2),
+        birth_certificate varchar(255),
+        burial_order varchar(255),
+        cause_of_death varchar(30),
+        certificate_medical_attendant varchar(255),
+        certification_authority varchar(255),
+        claim_status varchar(255),
+        claimant_certificate varchar(255),
+        claimant_email varchar(50),
+        claimant_first_name varchar(30),
+        claimant_id_number varchar(15),
+        claimant_last_name varchar(30),
+        claimant_postal_address_city varchar(255),
+        claimant_postal_address_street varchar(255),
+        claimant_postal_address_suburb varchar(255),
+        claimant_telephone_number varchar(15),
+        contact_place_of_death varchar(50),
+        date_claim_paid datetime(6),
+        date_of_death date,
+        death_certificate varchar(255),
+        deceased_employer varchar(30),
+        deceased_first_name varchar(30),
+        deceased_id_number varchar(15),
+        deceased_last_name varchar(30),
+        deceased_occupation varchar(30),
+        deceased_relationship varchar(15),
+        email varchar(50),
+        id_number varchar(15),
+        marriage_certificate varchar(255),
+        masters_release varchar(255),
+        medical_report_document varchar(255),
+        name_of_insured varchar(50),
+        nationalid varchar(255),
+        palour_address_city varchar(255),
+        palour_address_street varchar(255),
+        palour_address_suburb varchar(255),
+        palour_contact_number varchar(15),
+        palour_name varchar(50),
+        place_of_burial varchar(50),
+        place_of_death varchar(50),
+        police_report varchar(255),
+        policy_document varchar(255),
+        policy_number varchar(30),
+        telephone_number varchar(15),
+        venue_of_death varchar(50),
+        policy_funeral_id bigint,
+        policy_holder_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.431 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table claim_savings (
+       id bigint not null auto_increment,
+        amount decimal(19,2),
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.437 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table commission (
+       id bigint not null auto_increment,
+        amount_received double precision not null,
+        executive_agent_commission_rate double precision not null,
+        executive_unit_leader_commission_rate double precision not null,
+        month integer not null,
+        parent_agent_commission_rate double precision not null,
+        parent_unit_leader_commission_rate double precision not null,
+        policy_type varchar(255),
+        tied_agent_commission_rate double precision not null,
+        tied_unit_leader_commission_rate double precision not null,
+        upsell_agent_commission_rate double precision not null,
+        upsell_manager_commission_rate double precision not null,
+        payment_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.447 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table commission_payment (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        amount_received double precision not null,
+        payment_channel varchar(255),
+        payment_date datetime(6),
+        payment_reference varchar(255),
+        payment_status varchar(255),
+        policy_type varchar(255),
+        agent_id bigint,
+        manager_id bigint,
+        payment_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.456 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table commission_report (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        agent_id bigint,
+        amount decimal(19,2),
+        manager_id bigint,
+        status bit,
+        payment_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.462 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table comprehensive_funeral_product (
+       id bigint not null auto_increment,
+        clawback_period integer not null,
+        name varchar(255),
+        person_type varchar(255),
+        premium double precision not null,
+        sum_assured double precision not null,
+        term varchar(255),
+        comprehensive_funeral_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.467 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table employer (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        city varchar(255),
+        street varchar(255),
+        suburb varchar(255),
+        balance double precision not null,
+        contact_number varchar(255),
+        email varchar(255),
+        name varchar(255),
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.472 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table financial_advisor (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        contact_number varchar(255),
+        email varchar(255),
+        name varchar(255),
+        surname varchar(255),
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.477 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table funeral_product (
+       id bigint not null auto_increment,
+        clawback_period integer not null,
+        name varchar(255),
+        person_type varchar(255),
+        premium double precision not null,
+        sum_assured double precision not null,
+        funeral_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.484 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table interest (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        month integer,
+        rate decimal(19,2),
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.489 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table invoice (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        application_form_url varchar(255),
+        closing_balance double precision,
+        due_date date,
+        invoice_status varchar(32) not null,
+        invoicing_date date,
+        opening_balance double precision,
+        employer_id bigint,
+        policy_holder_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.495 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table invoice_item (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        beneficiary varchar(64),
+        policy_number varchar(255),
+        policy_type varchar(255),
+        policyholder varchar(64),
+        price double precision not null,
+        product varchar(32) not null,
+        invoice_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.500 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table legal_guardian (
+       contact_number varchar(255),
+        date_of_birth date,
+        email varchar(255),
+        name varchar(255),
+        surname varchar(255),
+        policy_holder_id bigint not null,
+        primary key (policy_holder_id)
+    ) engine=InnoDB 
+19:47:23.505 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table manager (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        branch varchar(255),
+        email varchar(255),
+        name varchar(255),
+        surname varchar(255),
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.511 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table payment (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        arrears_amount double precision not null,
+        base_currency varchar(255),
+        billed_amount double precision not null,
+        payment_channel varchar(255),
+        payment_date date,
+        payment_method varchar(255),
+        payment_reference varchar(255),
+        payment_status varchar(255),
+        policy_number varchar(255),
+        policy_type varchar(255),
+        received_amount double precision not null,
+        suspense_amount double precision not null,
+        invoice_id bigint,
+        policy_id bigint,
+        policy_holder_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.517 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table penalty (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        month integer,
+        rate decimal(19,2),
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.523 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table policy (
+       dtype varchar(31) not null,
+        id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        application_form_url varchar(255),
+        account_name varchar(255),
+        account_number varchar(255),
+        bank_name varchar(255),
+        branch varchar(255),
+        cancel_date date,
+        commencement_date date,
+        financial_advisor_reference varchar(255),
+        first_payment_date date,
+        mobile_account_name varchar(255),
+        mobile_number varchar(255),
+        next_invoicing_date date,
+        payment_frequency varchar(255),
+        payment_method varchar(255),
+        policy_number varchar(20),
+        policy_state varchar(255),
+        policy_status varchar(255),
+        policy_type varchar(255),
+        premium double precision not null,
+        premium_payer varchar(255),
+        sum_assured double precision not null,
+        balance double precision,
+        agent_id bigint,
+        policy_holder_id bigint,
+        accident_product_id bigint,
+        comprehensive_funeral_product_id bigint,
+        funeral_product_id bigint,
+        savings_product_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.529 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table policy_holder (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        balance double precision not null,
+        client_type varchar(255),
+        date_of_birth date not null,
+        email varchar(255),
+        employee_number varchar(255),
+        firstname varchar(255) not null,
+        gender varchar(255) not null,
+        id_number varchar(12) not null,
+        lastname varchar(255) not null,
+        mobile varchar(255) not null,
+        occupation varchar(255) not null,
+        person_type varchar(255),
+        physical_address_city varchar(255),
+        physical_address_street varchar(255),
+        physical_address_suburb varchar(255),
+        postal_address_city varchar(255),
+        postal_address_street varchar(255),
+        postal_address_suburb varchar(255),
+        status varchar(255),
+        title varchar(255) not null,
+        work_telephone varchar(255) not null,
+        employer_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.534 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table premium_payment (
+       id bigint not null,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        amount decimal(19,2),
+        payment_channel varchar(255),
+        payment_date date,
+        payment_reference varchar(255),
+        payment_status varchar(255),
+        policy_number varchar(255) not null,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.541 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table product (
+       dtype varchar(31) not null,
+        id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        name varchar(255),
+        product_type varchar(255),
+        admin_fee double precision,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.547 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table representative (
+       id bigint not null auto_increment,
+        category varchar(255),
+        contact_number varchar(255),
+        email varchar(255),
+        first_name varchar(255),
+        last_name varchar(255),
+        employer_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.553 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table savings_partial_withdrawal (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        amount decimal(19,2),
+        identity_document varchar(255),
+        inception_date date,
+        life_assured varchar(255),
+        policy_number varchar(255) not null,
+        purpose varchar(255),
+        withdrawal_status integer,
+        policy_savings_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.558 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table savings_product (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        clawback_period integer not null,
+        monthly_investment_premium double precision not null,
+        name varchar(255),
+        person_type varchar(255),
+        premium_waiver_rate double precision not null,
+        savings_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.563 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table savings_surrender (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        effective_date date,
+        identity_document varchar(255),
+        surrender_status integer,
+        surrender_value decimal(19,2),
+        policy_savings_id bigint,
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.569 [task-1] DEBUG org.hibernate.SQL - 
+    
+    create table transaction (
+       id bigint not null auto_increment,
+        created_by varchar(50) not null,
+        created_date datetime(6),
+        last_modified_by varchar(50),
+        last_modified_date datetime(6),
+        version bigint not null,
+        policy_number varchar(255),
+        policy_status_id varchar(255),
+        primary key (id)
+    ) engine=InnoDB 
+19:47:23.576 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table accident_product 
+       drop index if exists uk_name_sum_assured_premium_person_type 
+19:47:23.585 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table accident_product 
+       add constraint uk_name_sum_assured_premium_person_type unique (name, sum_assured, premium, person_type) 
+19:47:23.591 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table agent 
+       drop index if exists UK_pxogqxl64ae07j2lox1tgvrlx 
+19:47:23.592 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table agent 
+       add constraint UK_pxogqxl64ae07j2lox1tgvrlx unique (email) 
+19:47:23.597 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table cancel_policy 
+       drop index if exists UK_ewunqqlrpkrlsc25ffnxyd4qv 
+19:47:23.598 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table cancel_policy 
+       add constraint UK_ewunqqlrpkrlsc25ffnxyd4qv unique (policy_number) 
+19:47:23.603 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table commission 
+       drop index if exists uk_month_policy_type 
+19:47:23.604 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table commission 
+       add constraint uk_month_policy_type unique (month, policy_type) 
+19:47:23.609 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table comprehensive_funeral_product 
+       drop index if exists uk_name_sum_assured_premium_person_type 
+19:47:23.609 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table comprehensive_funeral_product 
+       add constraint uk_name_sum_assured_premium_person_type unique (name, sum_assured, premium, person_type, term) 
+19:47:23.625 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table employer 
+       drop index if exists UK_kde6jr4yp7v8fc949kh1tgyvp 
+19:47:23.626 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table employer 
+       add constraint UK_kde6jr4yp7v8fc949kh1tgyvp unique (email) 
+19:47:23.631 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table employer 
+       drop index if exists UK_sf0mayathvayc81n6p5vlo93d 
+19:47:23.631 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table employer 
+       add constraint UK_sf0mayathvayc81n6p5vlo93d unique (name) 
+19:47:23.636 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table financial_advisor 
+       drop index if exists UK_otx7y9cul7rlnvi5tof2wcnf9 
+19:47:23.637 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table financial_advisor 
+       add constraint UK_otx7y9cul7rlnvi5tof2wcnf9 unique (email) 
+19:47:23.642 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table funeral_product 
+       drop index if exists uk_name_sum_assured_premium_person_type 
+19:47:23.642 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table funeral_product 
+       add constraint uk_name_sum_assured_premium_person_type unique (name, sum_assured, premium, person_type) 
+19:47:23.649 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table interest 
+       drop index if exists UK_plvjvru190beutx7o0tn3q5lr 
+19:47:23.649 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table interest 
+       add constraint UK_plvjvru190beutx7o0tn3q5lr unique (month) 
+19:47:23.654 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table manager 
+       drop index if exists UK_ch4c0h9mgdd2c5lategqkpsyi 
+19:47:23.654 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table manager 
+       add constraint UK_ch4c0h9mgdd2c5lategqkpsyi unique (email) 
+19:47:23.659 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table penalty 
+       drop index if exists UK_js6l0ftu0vdfnghiv54fb7825 
+19:47:23.660 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table penalty 
+       add constraint UK_js6l0ftu0vdfnghiv54fb7825 unique (month) 
+19:47:23.664 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table policy 
+       drop index if exists UK_l7q2fb9fv4pqw1m40p4nfi7ir 
+19:47:23.665 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table policy 
+       add constraint UK_l7q2fb9fv4pqw1m40p4nfi7ir unique (policy_number) 
+19:47:23.670 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table policy_holder 
+       drop index if exists UK_12jxkhdosgot1oo14su8meyvl 
+19:47:23.671 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table policy_holder 
+       add constraint UK_12jxkhdosgot1oo14su8meyvl unique (email) 
+19:47:23.676 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table policy_holder 
+       drop index if exists UK_73nkdk5dcctfwvj1s55oxh3j9 
+19:47:23.677 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table policy_holder 
+       add constraint UK_73nkdk5dcctfwvj1s55oxh3j9 unique (id_number) 
+19:47:23.683 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table product 
+       drop index if exists UK_jmivyxk9rmgysrmsqw15lqr5b 
+19:47:23.684 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table product 
+       add constraint UK_jmivyxk9rmgysrmsqw15lqr5b unique (name) 
+19:47:23.688 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table savings_product 
+       drop index if exists uk_name_investment_premium_person_type 
+19:47:23.689 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table savings_product 
+       add constraint uk_name_investment_premium_person_type unique (name, monthly_investment_premium, premium_waiver_rate, person_type) 
+19:47:23.694 [task-1] DEBUG org.hibernate.SQL - create sequence hibernate_sequence start with 1 increment by 1 
+19:47:23.699 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table accident_product 
+       add constraint FKjr4n7t82clihh7039qntg801b 
+       foreign key (accident_id) 
+       references product (id) 
+19:47:23.715 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table agent 
+       add constraint FKa9lb6g5klcdr6u2m3c51w3672 
+       foreign key (manager_id) 
+       references manager (id) 
+19:47:23.729 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table allocation 
+       add constraint FKrpvwaqqk6odkw3ml95b4aspa9 
+       foreign key (payment_id) 
+       references payment (id) 
+19:47:23.744 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table allocation 
+       add constraint FKnp2rw3bf8c775vnqj2oircqir 
+       foreign key (policy_accident_id) 
+       references policy (id) 
+19:47:23.758 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table allocation 
+       add constraint FKrf9x8lk5qdj6dw7kwl9iim4lv 
+       foreign key (policy_comprehensive_id) 
+       references policy (id) 
+19:47:23.775 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table allocation 
+       add constraint FK53j1bg82rj0pd97xqe7h930l2 
+       foreign key (policy_funeral_id) 
+       references policy (id) 
+19:47:23.793 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table allocation 
+       add constraint FK412595bs81skw72y70n3q583r 
+       foreign key (policy_savings_id) 
+       references policy (id) 
+19:47:23.813 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table allocation 
+       add constraint FKgc4360okmfe6jrt5e7glveyvs 
+       foreign key (transaction_id) 
+       references transaction (id) 
+19:47:23.834 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table beneficiary 
+       add constraint FKto6ooi5gyv6om30b7nhdnjsr6 
+       foreign key (policy_id) 
+       references policy (id) 
+19:47:23.849 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table beneficiary_accident 
+       add constraint FK711ngl7wm8dt1dl8rvirl0s40 
+       foreign key (accident_id) 
+       references accident_product (id) 
+19:47:23.863 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table beneficiary_accident 
+       add constraint FKpxi15a6o05svkamvpinq79m9f 
+       foreign key (policy_accident_id) 
+       references policy (id) 
+19:47:23.879 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table beneficiary_comprehensive 
+       add constraint FK5l6afyf8vyc4gy056vms1suis 
+       foreign key (comprehensive_funeral_id) 
+       references comprehensive_funeral_product (id) 
+19:47:23.895 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table beneficiary_comprehensive 
+       add constraint FKs3csg77xte1lijse95qidh7cp 
+       foreign key (policy_comprehensive_id) 
+       references policy (id) 
+19:47:23.910 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table beneficiary_funeral 
+       add constraint FK2ci9806koh51ujvaxwvv8u8mc 
+       foreign key (funeral_id) 
+       references funeral_product (id) 
+19:47:23.926 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table beneficiary_funeral 
+       add constraint FKirrl605arcr1b3mlp3n4k4i8k 
+       foreign key (policy_funeral_id) 
+       references policy (id) 
+19:47:23.940 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table beneficiary_savings 
+       add constraint FK3g8oocdpv54rs25tb47trd10x 
+       foreign key (policy_savings_id) 
+       references policy (id) 
+19:47:23.955 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table beneficiary_savings 
+       add constraint FK8wuty16mkbk2aqd2ry0pfxrj6 
+       foreign key (savings_id) 
+       references savings_product (id) 
+19:47:23.973 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table claim_accident 
+       add constraint FKjg7u1sg1btu43jnab5ndg67ys 
+       foreign key (policy_accident_id) 
+       references policy (id) 
+19:47:23.993 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table claim_accident 
+       add constraint FKpkji3tqgwgt9viadu951gwlwv 
+       foreign key (policy_holder_id) 
+       references policy_holder (id) 
+19:47:24.012 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table claim_comprehensive 
+       add constraint FKr3fi124ayt3t2gsmt6ghe74i 
+       foreign key (policy_comprehensive_id) 
+       references policy (id) 
+19:47:24.028 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table claim_comprehensive 
+       add constraint FKif2cp21w76woc4kj38s3nor7q 
+       foreign key (policy_holder_id) 
+       references policy_holder (id) 
+19:47:24.044 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table claim_funeral 
+       add constraint FKs4ray6bqv3c83uvryro86vw92 
+       foreign key (policy_funeral_id) 
+       references policy (id) 
+19:47:24.058 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table claim_funeral 
+       add constraint FK7yj6kisepyw3856qa3113yigb 
+       foreign key (policy_holder_id) 
+       references policy_holder (id) 
+19:47:24.075 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table commission 
+       add constraint FKgr4s4l8g0yleiwh693osjngal 
+       foreign key (payment_id) 
+       references payment (id) 
+19:47:24.090 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table commission_payment 
+       add constraint FKrb8a24y78qbw5ga5e5q9g4vbf 
+       foreign key (agent_id) 
+       references agent (id) 
+19:47:24.106 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table commission_payment 
+       add constraint FKkn94feiuuwewylyio94fs4sff 
+       foreign key (manager_id) 
+       references manager (id) 
+19:47:24.123 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table commission_payment 
+       add constraint FKt2a6866b0r30xwjru1bxo549j 
+       foreign key (payment_id) 
+       references payment (id) 
+19:47:24.143 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table commission_report 
+       add constraint FKqnhfoxp4f1td308flnl4carsf 
+       foreign key (payment_id) 
+       references payment (id) 
+19:47:24.162 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table comprehensive_funeral_product 
+       add constraint FKpydh6j55ywrfxk32ww51lo7cn 
+       foreign key (comprehensive_funeral_id) 
+       references product (id) 
+19:47:24.180 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table funeral_product 
+       add constraint FKn35ev3kdq7cperlgc3w7wu9td 
+       foreign key (funeral_id) 
+       references product (id) 
+19:47:24.199 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table invoice 
+       add constraint FKdv29l1u94flhv5v2iuh7a1khb 
+       foreign key (employer_id) 
+       references employer (id) 
+19:47:24.216 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table invoice 
+       add constraint FKpf4vreeeb8u5arhqccydham7a 
+       foreign key (policy_holder_id) 
+       references policy_holder (id) 
+19:47:24.236 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table invoice_item 
+       add constraint FKbu6tmpd0mtgu9wrw5bj5uv09v 
+       foreign key (invoice_id) 
+       references invoice (id) 
+19:47:24.252 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table legal_guardian 
+       add constraint FKel7higrmv48tl73vqahd09puo 
+       foreign key (policy_holder_id) 
+       references policy_holder (id) 
+19:47:24.264 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table payment 
+       add constraint FKsb24p8f52refbb80qwp4gem9n 
+       foreign key (invoice_id) 
+       references invoice (id) 
+19:47:24.279 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table payment 
+       add constraint FKs1j100xblsa0x8e6x8ndp546k 
+       foreign key (policy_id) 
+       references policy (id) 
+19:47:24.293 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table payment 
+       add constraint FKpvm7u9qus1cf5olj2o1c4qcie 
+       foreign key (policy_holder_id) 
+       references policy_holder (id) 
+19:47:24.310 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table policy 
+       add constraint FK639vo7fd0ma0tvyr4l13698eu 
+       foreign key (agent_id) 
+       references agent (id) 
+19:47:24.325 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table policy 
+       add constraint FKm3lkqscm28bjujct48pvolpw0 
+       foreign key (policy_holder_id) 
+       references policy_holder (id) 
+19:47:24.344 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table policy 
+       add constraint FK7ef1upyi875ocxa5ii4x0w5yn 
+       foreign key (accident_product_id) 
+       references accident_product (id) 
+19:47:24.367 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table policy 
+       add constraint FK1twjhomarlbrljyyfro0i3cfe 
+       foreign key (comprehensive_funeral_product_id) 
+       references comprehensive_funeral_product (id) 
+19:47:24.390 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table policy 
+       add constraint FKa0mqerkgfuv2ba2ggif2mmysl 
+       foreign key (funeral_product_id) 
+       references funeral_product (id) 
+19:47:24.417 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table policy 
+       add constraint FKmgvga8u4itba3s9gqbh72l1w1 
+       foreign key (savings_product_id) 
+       references savings_product (id) 
+19:47:24.439 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table policy_holder 
+       add constraint FKs177viov2ervjt5gwo83ulr2f 
+       foreign key (employer_id) 
+       references employer (id) 
+19:47:24.456 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table representative 
+       add constraint FKmodnxunrf3km0d2346fjaela3 
+       foreign key (employer_id) 
+       references employer (id) 
+19:47:24.470 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table savings_partial_withdrawal 
+       add constraint FKrkevslb21pjijw23f8ivajtoq 
+       foreign key (policy_savings_id) 
+       references policy (id) 
+19:47:24.499 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table savings_product 
+       add constraint FK5yvjw639tfglshsri71nssljs 
+       foreign key (savings_id) 
+       references product (id) 
+19:47:24.514 [task-1] DEBUG org.hibernate.SQL - 
+    
+    alter table savings_surrender 
+       add constraint FKlch6wvwpcnlm4qvp167oan7vs 
+       foreign key (policy_savings_id) 
+       references policy (id) 
+19:47:24.528 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+19:47:24.595 [task-1] WARN  o.h.s.spi.SearchIntegratorBuilder - HSEARCH000044: Abstract classes cannot be indexed directly. Only concrete subclasses can be indexed. @Indexed on 'zw.co.mynhaka.polad.domain.model.Policy' is superfluous and should be removed. 
+19:47:24.681 [task-1] WARN  o.h.s.i.i.LuceneEmbeddedIndexFamilyImpl - HSEARCH000075: Configuration setting hibernate.search.lucene_version was not specified: using LUCENE_CURRENT. 
+19:47:24.755 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default' 
+19:47:25.325 [main] WARN  o.s.s.o.p.t.s.JwtAccessTokenConverter - Unable to create an RSA verifier from verifierKey (ignoreable if using MAC) 
+19:47:25.388 [main] INFO  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 64f15998-e96b-4201-a123-c988ee74148a
+ 
+19:47:25.650 [main] INFO  o.s.s.w.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4a2f1ae3, org.springframework.security.web.context.SecurityContextPersistenceFilter@32f2de5c, org.springframework.security.web.header.HeaderWriterFilter@6e8f3b76, org.springframework.security.web.authentication.logout.LogoutFilter@63e81ac6, org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationProcessingFilter@648bfebe, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3bf306d3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6c9e7af2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@48b1b469, org.springframework.security.web.session.SessionManagementFilter@4df8443f, org.springframework.security.web.access.ExceptionTranslationFilter@38affd02, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@65c66fc4] 
+19:47:25.776 [main] WARN  c.n.c.s.URLConfigurationSource - No URLs will be polled as dynamic configuration sources. 
+19:47:25.777 [main] INFO  c.n.c.s.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath. 
+19:47:28.323 [main] WARN  o.s.c.l.c.BlockingLoadBalancerClientAutoConfiguration$BlockingLoadBalancerClientRibbonWarnLogger - You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project. 
+19:47:28.434 [main] WARN  o.s.c.s.z.ZipkinAutoConfiguration - Check result of the [org.springframework.cloud.sleuth.zipkin2.sender.RestTemplateSender@57c089ac] contains an error [CheckResult{ok=false, error=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:9411/api/v2/spans": Connection refused (Connection refused); nested exception is java.net.ConnectException: Connection refused (Connection refused)}] 
+19:47:28.700 [main] WARN  o.s.c.s.o.SpringCloudSecurityAutoConfiguration - All Spring Cloud Security modules and starters are deprecated. They will be moved to individual projects in the next major release. 
+19:47:28.800 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator' 
+19:47:28.879 [main] INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING 
+19:47:28.947 [main] INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1 
+19:47:29.122 [main] INFO  c.n.d.p.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson 
+19:47:29.123 [main] INFO  c.n.d.p.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson 
+19:47:29.274 [main] INFO  c.n.d.p.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml 
+19:47:29.275 [main] INFO  c.n.d.p.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml 
+19:47:29.397 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
+19:47:29.411 [main] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false 
+19:47:29.411 [main] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null 
+19:47:29.411 [main] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false 
+19:47:29.411 [main] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false 
+19:47:29.411 [main] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true 
+19:47:29.411 [main] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true 
+19:47:29.411 [main] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server 
+19:47:29.451 [main] ERROR c.n.d.s.t.d.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} 
+com.sun.jersey.api.client.ClientHandlerException: java.net.ConnectException: Connection refused (Connection refused)
+	at com.sun.jersey.client.apache4.ApacheHttpClient4Handler.handle(ApacheHttpClient4Handler.java:187)
+	at com.sun.jersey.api.client.filter.GZIPContentEncodingFilter.handle(GZIPContentEncodingFilter.java:123)
+	at com.netflix.discovery.EurekaIdentityHeaderFilter.handle(EurekaIdentityHeaderFilter.java:27)
+	at com.sun.jersey.api.client.Client.handle(Client.java:652)
+	at com.sun.jersey.api.client.WebResource.handle(WebResource.java:682)
+	at com.sun.jersey.api.client.WebResource.access$200(WebResource.java:74)
+	at com.sun.jersey.api.client.WebResource$Builder.get(WebResource.java:509)
+	at com.netflix.discovery.shared.transport.jersey.AbstractJerseyEurekaHttpClient.getApplicationsInternal(AbstractJerseyEurekaHttpClient.java:196)
+	at com.netflix.discovery.shared.transport.jersey.AbstractJerseyEurekaHttpClient.getApplications(AbstractJerseyEurekaHttpClient.java:167)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$6.execute(EurekaHttpClientDecorator.java:137)
+	at com.netflix.discovery.shared.transport.decorator.MetricsCollectingEurekaHttpClient.execute(MetricsCollectingEurekaHttpClient.java:73)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getApplications(EurekaHttpClientDecorator.java:134)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$6.execute(EurekaHttpClientDecorator.java:137)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:118)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:79)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getApplications(EurekaHttpClientDecorator.java:134)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$6.execute(EurekaHttpClientDecorator.java:137)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getApplications(EurekaHttpClientDecorator.java:134)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$6.execute(EurekaHttpClientDecorator.java:137)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getApplications(EurekaHttpClientDecorator.java:134)
+	at com.netflix.discovery.DiscoveryClient.getAndStoreFullRegistry(DiscoveryClient.java:1081)
+	at com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:995)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:438)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:282)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:278)
+	at org.springframework.cloud.netflix.eureka.CloudEurekaClient.<init>(CloudEurekaClient.java:67)
+	at org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration.eurekaClient(EurekaClientAutoConfiguration.java:316)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:650)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:635)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1336)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1176)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:556)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$1(AbstractBeanFactory.java:363)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.getBean(GenericScope.java:389)
+	at org.springframework.cloud.context.scope.GenericScope.get(GenericScope.java:186)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:360)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.aop.target.SimpleBeanTargetSource.getTarget(SimpleBeanTargetSource.java:35)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getTargetObject(EurekaRegistration.java:129)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getEurekaClient(EurekaRegistration.java:117)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:282)
+	at org.springframework.cloud.context.scope.GenericScope$LockedScopedProxyFactoryBean.invoke(GenericScope.java:499)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration$$EnhancerBySpringCGLIB$$2b3a920e.getEurekaClient(<generated>)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.maybeInitializeClient(EurekaServiceRegistry.java:57)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.register(EurekaServiceRegistry.java:38)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration.start(EurekaAutoServiceRegistration.java:83)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:182)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:53)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:360)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:158)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:122)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:895)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:554)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:120)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:123)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:244)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:98)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$5(ClassBasedTestDescriptor.java:341)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:346)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$6(ClassBasedTestDescriptor.java:341)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:312)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:658)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:340)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:263)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$2(ClassBasedTestDescriptor.java:256)
+	at java.base/java.util.Optional.orElseGet(Optional.java:369)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$3(ClassBasedTestDescriptor.java:255)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:29)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:108)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:107)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:71)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$1(NodeTestTask.java:107)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:107)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:75)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+Caused by: java.net.ConnectException: Connection refused (Connection refused)
+	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:609)
+	at org.apache.http.conn.scheme.PlainSocketFactory.connectSocket(PlainSocketFactory.java:121)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:180)
+	at org.apache.http.impl.conn.AbstractPoolEntry.open(AbstractPoolEntry.java:144)
+	at org.apache.http.impl.conn.AbstractPooledConnAdapter.open(AbstractPooledConnAdapter.java:134)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:605)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:440)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:835)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:118)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at com.sun.jersey.client.apache4.ApacheHttpClient4Handler.handle(ApacheHttpClient4Handler.java:173)
+	... 139 common frames omitted
+19:47:29.453 [main] WARN  c.n.d.s.t.d.RetryableEurekaHttpClient - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused) 
+19:47:29.453 [main] ERROR c.netflix.discovery.DiscoveryClient - DiscoveryClient_MYNHAKA-POLAD/192.168.0.107:mynhaka-polad:8100 - was unable to refresh its cache! status = Cannot execute request on any known server 
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getApplications(EurekaHttpClientDecorator.java:134)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$6.execute(EurekaHttpClientDecorator.java:137)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getApplications(EurekaHttpClientDecorator.java:134)
+	at com.netflix.discovery.DiscoveryClient.getAndStoreFullRegistry(DiscoveryClient.java:1081)
+	at com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:995)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:438)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:282)
+	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:278)
+	at org.springframework.cloud.netflix.eureka.CloudEurekaClient.<init>(CloudEurekaClient.java:67)
+	at org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration.eurekaClient(EurekaClientAutoConfiguration.java:316)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:650)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:635)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1336)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1176)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:556)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$1(AbstractBeanFactory.java:363)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.getBean(GenericScope.java:389)
+	at org.springframework.cloud.context.scope.GenericScope.get(GenericScope.java:186)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:360)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.aop.target.SimpleBeanTargetSource.getTarget(SimpleBeanTargetSource.java:35)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getTargetObject(EurekaRegistration.java:129)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getEurekaClient(EurekaRegistration.java:117)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:282)
+	at org.springframework.cloud.context.scope.GenericScope$LockedScopedProxyFactoryBean.invoke(GenericScope.java:499)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration$$EnhancerBySpringCGLIB$$2b3a920e.getEurekaClient(<generated>)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.maybeInitializeClient(EurekaServiceRegistry.java:57)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.register(EurekaServiceRegistry.java:38)
+	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration.start(EurekaAutoServiceRegistration.java:83)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:182)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:53)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:360)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:158)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:122)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:895)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:554)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:120)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:123)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:244)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:98)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$5(ClassBasedTestDescriptor.java:341)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:346)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$6(ClassBasedTestDescriptor.java:341)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:312)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:658)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:340)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:263)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$2(ClassBasedTestDescriptor.java:256)
+	at java.base/java.util.Optional.orElseGet(Optional.java:369)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$3(ClassBasedTestDescriptor.java:255)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:29)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:108)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:107)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:71)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$1(NodeTestTask.java:107)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:107)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:75)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+19:47:29.454 [main] WARN  c.netflix.discovery.DiscoveryClient - Using default backup registry implementation which does not do anything. 
+19:47:29.456 [main] INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30 
+19:47:29.458 [main] INFO  c.n.d.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4 
+19:47:29.462 [main] INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1626457649461 with initial instances count: 0 
+19:47:29.473 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application MYNHAKA-POLAD with eureka with status UP 
+19:47:29.474 [main] INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1626457649474, current=UP, previous=STARTING] 
+19:47:29.476 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_MYNHAKA-POLAD/192.168.0.107:mynhaka-polad:8100: registering service... 
+19:47:29.481 [DiscoveryClient-InstanceInfoReplicator-0] ERROR c.n.d.s.t.d.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} 
+com.sun.jersey.api.client.ClientHandlerException: java.net.ConnectException: Connection refused (Connection refused)
+	at com.sun.jersey.client.apache4.ApacheHttpClient4Handler.handle(ApacheHttpClient4Handler.java:187)
+	at com.sun.jersey.api.client.filter.GZIPContentEncodingFilter.handle(GZIPContentEncodingFilter.java:123)
+	at com.netflix.discovery.EurekaIdentityHeaderFilter.handle(EurekaIdentityHeaderFilter.java:27)
+	at com.sun.jersey.api.client.Client.handle(Client.java:652)
+	at com.sun.jersey.api.client.WebResource.handle(WebResource.java:682)
+	at com.sun.jersey.api.client.WebResource.access$200(WebResource.java:74)
+	at com.sun.jersey.api.client.WebResource$Builder.post(WebResource.java:570)
+	at com.netflix.discovery.shared.transport.jersey.AbstractJerseyEurekaHttpClient.register(AbstractJerseyEurekaHttpClient.java:57)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.MetricsCollectingEurekaHttpClient.execute(MetricsCollectingEurekaHttpClient.java:73)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:118)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:79)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:857)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.net.ConnectException: Connection refused (Connection refused)
+	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:609)
+	at org.apache.http.conn.scheme.PlainSocketFactory.connectSocket(PlainSocketFactory.java:121)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:180)
+	at org.apache.http.impl.conn.AbstractPoolEntry.open(AbstractPoolEntry.java:144)
+	at org.apache.http.impl.conn.AbstractPooledConnAdapter.open(AbstractPooledConnAdapter.java:134)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:605)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:440)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:835)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:118)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at com.sun.jersey.client.apache4.ApacheHttpClient4Handler.handle(ApacheHttpClient4Handler.java:173)
+	... 29 common frames omitted
+19:47:29.482 [DiscoveryClient-InstanceInfoReplicator-0] WARN  c.n.d.s.t.d.RetryableEurekaHttpClient - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused) 
+19:47:29.483 [DiscoveryClient-InstanceInfoReplicator-0] WARN  c.netflix.discovery.DiscoveryClient - DiscoveryClient_MYNHAKA-POLAD/192.168.0.107:mynhaka-polad:8100 - registration failed Cannot execute request on any known server 
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:857)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+19:47:29.483 [DiscoveryClient-InstanceInfoReplicator-0] WARN  c.n.d.InstanceInfoReplicator - There was a problem with the instance info replicator 
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:857)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+19:47:29.517 [main] INFO  z.c.m.polad.MynhakaApplicationTests - Started MynhakaApplicationTests in 11.618 seconds (JVM running for 12.643) 
+19:47:29.701 [SpringContextShutdownHook] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Unregistering application MYNHAKA-POLAD with eureka with status DOWN 
+19:47:29.702 [SpringContextShutdownHook] WARN  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1626457649702, current=DOWN, previous=UP] 
+19:47:29.702 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_MYNHAKA-POLAD/192.168.0.107:mynhaka-polad:8100: registering service... 
+19:47:29.704 [DiscoveryClient-InstanceInfoReplicator-0] ERROR c.n.d.s.t.d.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} 
+com.sun.jersey.api.client.ClientHandlerException: java.net.ConnectException: Connection refused (Connection refused)
+	at com.sun.jersey.client.apache4.ApacheHttpClient4Handler.handle(ApacheHttpClient4Handler.java:187)
+	at com.sun.jersey.api.client.filter.GZIPContentEncodingFilter.handle(GZIPContentEncodingFilter.java:123)
+	at com.netflix.discovery.EurekaIdentityHeaderFilter.handle(EurekaIdentityHeaderFilter.java:27)
+	at com.sun.jersey.api.client.Client.handle(Client.java:652)
+	at com.sun.jersey.api.client.WebResource.handle(WebResource.java:682)
+	at com.sun.jersey.api.client.WebResource.access$200(WebResource.java:74)
+	at com.sun.jersey.api.client.WebResource$Builder.post(WebResource.java:570)
+	at com.netflix.discovery.shared.transport.jersey.AbstractJerseyEurekaHttpClient.register(AbstractJerseyEurekaHttpClient.java:57)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.MetricsCollectingEurekaHttpClient.execute(MetricsCollectingEurekaHttpClient.java:73)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:118)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:79)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:857)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.net.ConnectException: Connection refused (Connection refused)
+	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:609)
+	at org.apache.http.conn.scheme.PlainSocketFactory.connectSocket(PlainSocketFactory.java:121)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:180)
+	at org.apache.http.impl.conn.AbstractPoolEntry.open(AbstractPoolEntry.java:144)
+	at org.apache.http.impl.conn.AbstractPooledConnAdapter.open(AbstractPooledConnAdapter.java:134)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:605)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:440)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:835)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:118)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at com.sun.jersey.client.apache4.ApacheHttpClient4Handler.handle(ApacheHttpClient4Handler.java:173)
+	... 29 common frames omitted
+19:47:29.707 [DiscoveryClient-InstanceInfoReplicator-0] WARN  c.n.d.s.t.d.RetryableEurekaHttpClient - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused) 
+19:47:29.707 [DiscoveryClient-InstanceInfoReplicator-0] WARN  c.netflix.discovery.DiscoveryClient - DiscoveryClient_MYNHAKA-POLAD/192.168.0.107:mynhaka-polad:8100 - registration failed Cannot execute request on any known server 
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:857)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+19:47:29.707 [DiscoveryClient-InstanceInfoReplicator-0] WARN  c.n.d.InstanceInfoReplicator - There was a problem with the instance info replicator 
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:857)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
+	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+19:47:30.738 [SpringContextShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default' 
+19:47:30.761 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler' 
+19:47:30.762 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor' 
+19:47:30.763 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated... 
+19:47:30.770 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed. 
+19:47:30.772 [SpringContextShutdownHook] INFO  c.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ... 
+19:47:33.774 [SpringContextShutdownHook] INFO  c.netflix.discovery.DiscoveryClient - Unregistering ... 
+19:47:33.777 [SpringContextShutdownHook] ERROR c.n.d.s.t.d.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} 
+com.sun.jersey.api.client.ClientHandlerException: java.net.ConnectException: Connection refused (Connection refused)
+	at com.sun.jersey.client.apache4.ApacheHttpClient4Handler.handle(ApacheHttpClient4Handler.java:187)
+	at com.sun.jersey.api.client.filter.GZIPContentEncodingFilter.handle(GZIPContentEncodingFilter.java:123)
+	at com.netflix.discovery.EurekaIdentityHeaderFilter.handle(EurekaIdentityHeaderFilter.java:27)
+	at com.sun.jersey.api.client.Client.handle(Client.java:652)
+	at com.sun.jersey.api.client.WebResource.handle(WebResource.java:682)
+	at com.sun.jersey.api.client.WebResource.access$200(WebResource.java:74)
+	at com.sun.jersey.api.client.WebResource$Builder.delete(WebResource.java:591)
+	at com.netflix.discovery.shared.transport.jersey.AbstractJerseyEurekaHttpClient.cancel(AbstractJerseyEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.MetricsCollectingEurekaHttpClient.execute(MetricsCollectingEurekaHttpClient.java:73)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:118)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:79)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:953)
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:929)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:347)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:177)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:242)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:235)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:403)
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:142)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:258)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:579)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:551)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1092)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:512)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1085)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1061)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1030)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:949)
+Caused by: java.net.ConnectException: Connection refused (Connection refused)
+	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:609)
+	at org.apache.http.conn.scheme.PlainSocketFactory.connectSocket(PlainSocketFactory.java:121)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:180)
+	at org.apache.http.impl.conn.AbstractPoolEntry.open(AbstractPoolEntry.java:144)
+	at org.apache.http.impl.conn.AbstractPooledConnAdapter.open(AbstractPooledConnAdapter.java:134)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:605)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:440)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:835)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:118)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at com.sun.jersey.client.apache4.ApacheHttpClient4Handler.handle(ApacheHttpClient4Handler.java:173)
+	... 42 common frames omitted
+19:47:33.778 [SpringContextShutdownHook] WARN  c.n.d.s.t.d.RetryableEurekaHttpClient - Request execution failed with message: java.net.ConnectException: Connection refused (Connection refused) 
+19:47:33.778 [SpringContextShutdownHook] ERROR c.netflix.discovery.DiscoveryClient - DiscoveryClient_MYNHAKA-POLAD/192.168.0.107:mynhaka-polad:8100 - de-registration failedCannot execute request on any known server 
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:953)
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:929)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:347)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:177)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:242)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:235)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:403)
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:142)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:258)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:579)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:551)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1092)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:512)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1085)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1061)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1030)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:949)
+19:47:33.790 [SpringContextShutdownHook] INFO  c.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient 

@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  polad-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: polad-nhaka-dev
+    container_name: polad-nhaka-dev
+    ports:
+      - '8100:8100'
+    restart: unless-stopped
+    volumes:
+      - ./logs:/logs
+      - ./templates-dir:/templates-dir
+    network_mode: host

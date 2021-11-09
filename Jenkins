@@ -1,0 +1,41 @@
+
+pipeline {
+  environment {
+    imagename = "cap10/myrepository:polad-nhaka-dev"
+    registryCredential = 'dockerhub-login'
+    dockerImage = 'cap10/myrepository:polad-nhaka-dev'
+  }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git([url: 'https://github.com/jugaad-zw/mypolad.git', branch: 'master', credentialsId: 'cap10-github'])
+
+      }
+    }
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build imagename
+        }
+      }
+    }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+             dockerImage.push('latest')
+
+          }
+        }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+         sh "docker rmi $imagename:latest"
+
+      }
+    }
+  }
+}
+

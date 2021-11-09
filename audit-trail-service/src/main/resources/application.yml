@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: mynhaka-audit-trail-service
+  profiles:
+    active: local

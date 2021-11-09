@@ -1,0 +1,163 @@
+version: '3'
+services:
+
+  traefik:
+    image: traefik:alpine
+    labels:
+      - traefik.frontend.rule=Host:traefik-akupay.jugaad.co.zw
+      - traefik.port=8080
+      - traefik.enable=true
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${PWD}/traefik.toml:/etc/traefik/traefik.toml
+      - ${PWD}/acme.json:/acme.json
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    networks:
+      net:
+        ipv4_address: "192.168.1.180"
+
+
+  discovery-service:
+    build:
+      context: ${PWD}/eureka-service
+      dockerfile: Dockerfile
+    image: cap10/myrepository:mynhaka-discovery-service
+    container_name: discovery-service
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    labels:
+      - traefik.frontend.rule=Host:eureka-akupay.jugaad.co.zw
+      - traefik.port=8761
+      - traefik.enable=true
+    restart: unless-stopped
+    networks:
+      net:
+        ipv4_address: "192.168.1.185"
+
+  api-service:
+    build:
+      context: ${PWD}/mynhaka
+      dockerfile: Dockerfile
+    image:  cap10/myrepository:polad-nhaka-dev
+    container_name: api-service
+    ports:
+      - 8100:8100
+    environment:
+      - "SPRING_PROFILES_ACTIVE=dev"
+    labels:
+      - traefik.frontend.rule=Host:akupay.jugaad.co.zw
+      - traefik.port=8100
+      - traefik.enable=true
+    restart: unless-stopped
+    networks:
+      net:
+        ipv4_address: "192.168.1.186"
+
+
+
+  oauth-service:
+    build:
+      context: ${PWD}/ouath-service
+      dockerfile: Dockerfile
+    image: cap10/myrepository:oauth-nhaka
+    container_name: oauth-service
+    ports:
+      - 8201:8201
+    environment:
+      - "SPRING_PROFILES_ACTIVE=dev"
+    restart: unless-stopped
+    networks:
+      net:
+        ipv4_address: "192.168.1.188"
+
+
+
+
+  user-service:
+    build:
+      context: ${PWD}/user-service
+      dockerfile: Dockerfile
+    image:  cap10/myrepository:rest-oauth-api-nhaka
+    container_name: user-service
+    ports:
+      - 8202:8202
+    environment:
+      - "SPRING_PROFILES_ACTIVE=dev"
+    restart: unless-stopped
+    networks:
+      net:
+        ipv4_address: "192.168.1.194"
+
+  zuul-gateway:
+    build:
+      context: ${PWD}/zuul-gateway
+      dockerfile: Dockerfile
+    image:  cap10/myrepository:mynhaka-zuul-gateway
+    container_name: zuul-gateway
+    environment:
+      - "SPRING_PROFILES_ACTIVE=dev"
+    labels:
+      - traefik.frontend.rule=Host:api-akupay.jugaad.co.zw
+      - traefik.port=8765
+      - traefik.enable=true
+    restart: unless-stopped
+    networks:
+      net:
+        ipv4_address: "192.168.1.195"
+
+  mynhaka-file-storage:
+    build:
+      context: ${PWD}/file-storage-service
+      dockerfile: Dockerfile
+    image:  cap10/myrepository:file-storage
+    container_name: mynhaka-file-storage
+    restart: unless-stopped
+    environment:
+      - "SPRING_PROFILES_ACTIVE=dev"
+    networks:
+      net:
+        ipv4_address: "192.168.1.196"
+
+  audit-trail-service:
+    build:
+      context: ${PWD}/audit-trail-service
+      dockerfile: Dockerfile
+    image: cap10/myrepository:mynhaka_audit-trail-service
+    container_name: audit-trail-service
+    ports:
+      - 8208:8208
+    environment:
+      - "SPRING_PROFILES_ACTIVE=dev"
+    restart: unless-stopped
+    volumes:
+      - /upload-dir:/upload-dir
+    networks:
+      net:
+        ipv4_address: "192.168.1.202"
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    labels:
+      - traefik.frontend.rule=Host:zipkin-mynhaka.jugaad.co.zw
+      - traefik.port=9411
+      - traefik.enable=true
+    restart: unless-stopped
+    networks:
+      net:
+        ipv4_address: "192.168.1.200"
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+volumes:
+  mariadb-data:
+  rabbitmq_data:
+    driver: local

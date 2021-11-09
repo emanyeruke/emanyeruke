@@ -1,0 +1,181 @@
+{
+  "name": "Funeral Policy",
+  "adminFee": 0,
+  "funeralProductCreateDto": [
+    {
+      "funeralId": 0,
+      "name": "Funeral-1000",
+      "sumAssured": 1000,
+      "premium": 1.50,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-1000",
+      "sumAssured": 1000,
+      "premium": 1.50,
+      "personType": "SPOUSE"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-1000",
+      "sumAssured": 1000,
+      "premium": 1.00,
+      "personType": "CHILD"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-1000",
+      "sumAssured": 1000,
+      "premium": 1.20,
+      "personType": "PARENT"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-1000",
+      "sumAssured": 1000,
+      "premium": 1.20,
+      "personType": "EXTENDED_FAMILY"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-2000",
+      "sumAssured": 2000,
+      "premium": 3.00,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-2000",
+      "sumAssured": 2000,
+      "premium": 3.00,
+      "personType": "SPOUSE"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-2000",
+      "sumAssured": 2000,
+      "premium": 2.00,
+      "personType": "CHILD"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-2000",
+      "sumAssured": 2000,
+      "premium": 2.40,
+      "personType": "PARENT"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-2000",
+      "sumAssured": 2000,
+      "premium": 2.40,
+      "personType": "EXTENDED_FAMILY"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-3000",
+      "sumAssured": 3000,
+      "premium": 4.50,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-3000",
+      "sumAssured": 3000,
+      "premium": 4.50,
+      "personType": "SPOUSE"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-3000",
+      "sumAssured": 3000,
+      "premium": 3.00,
+      "personType": "CHILD"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-3000",
+      "sumAssured": 3000,
+      "premium": 3.60,
+      "personType": "PARENT"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-3000",
+      "sumAssured": 3000,
+      "premium": 3.60,
+      "personType": "EXTENDED_FAMILY"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-4000",
+      "sumAssured": 4000,
+      "premium": 6.00,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-4000",
+      "sumAssured": 4000,
+      "premium": 6.00,
+      "personType": "SPOUSE"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-4000",
+      "sumAssured": 4000,
+      "premium": 4.00,
+      "personType": "CHILD"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-4000",
+      "sumAssured": 4000,
+      "premium": 4.80,
+      "personType": "PARENT"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-4000",
+      "sumAssured": 4000,
+      "premium": 4.80,
+      "personType": "EXTENDED_FAMILY"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-5000",
+      "sumAssured": 5000,
+      "premium": 7.50,
+      "personType": "PRINCIPAL"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-5000",
+      "sumAssured": 5000,
+      "premium": 7.50,
+      "personType": "SPOUSE"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-5000",
+      "sumAssured": 5000,
+      "premium": 5.00,
+      "personType": "CHILD"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-5000",
+      "sumAssured": 5000,
+      "premium": 6.00,
+      "personType": "PARENT"
+    },
+    {
+      "funeralId": 0,
+      "name": "Funeral-5000",
+      "sumAssured": 5000,
+      "premium": 6.00,
+      "personType": "EXTENDED_FAMILY"
+    }
+  ]
+}
